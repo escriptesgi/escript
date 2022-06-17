@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#####################################################################
+#                                                                   # 
+#     Description : déployement de l'environnement applicatif       #
+#                                                                   #
+#                                                                   #
+#####################################################################
+
+ echo 
+         "
+          Choose an option  
+         --create :  Craete Containers
+
+         --drop :    Drop containers
+
+         --infos :   Infos containers caracteristic (IP, Name, User ..)
+
+         --start :   Starting containers
+
+         --ansible : Deploying ansible
+        "
