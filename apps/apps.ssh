@@ -7,6 +7,39 @@
 #                                                                   #
 #####################################################################
 
+# Si option --create
+        if [ "$1" == "--create" ];then
+            echo " Vous avez choisis --create"
+
+# Si option --drop
+        elif [ "$1" == "--drop" ];then
+            echo ""
+            echo " Vous avez choisis --drop"
+            echo ""
+
+# Si option --infos
+        elif [ "$1" == "--infos" ];then
+            echo ""
+            echo " Vous avez choisis --infos"
+            echo ""
+
+# Si option --start
+        elif [ "$1" == "--start" ];then
+            echo ""
+            echo " Vous avez choisis --start"
+            echo ""
+
+# Si option --ansible
+        elif [ "$1" == "--ansible" ];then
+            echo ""
+            echo " Vous avez choisis --ansible"
+            echo ""
+
+# Si aucune option affichage de l'aide
+        else
+            echo ""
+            echo ""
+
  echo 
          "
           Choose an option  
@@ -20,3 +53,5 @@
 
          --ansible : Deploying ansible
         "
+
+        fi
