@@ -10,38 +10,43 @@
 # Si option --create
         if [ "$1" == "--create" ];then
             echo ""
-            echo " Vous avez choisis --create"
+            echo " Vous avez choisi --create"
             echo ""
-                #Initaiulisation du nombre conteneur
-                nombre_ct=1
-                [ "$2" != "" ] && nombre_ct=$2
-                docker run -tid --name $USER alpine:lates
-                echo " Vous avez créé $nombre_ct"
+            echo "Debut de la création du/des conteneur.s"
+                # Définition du nombre machine
+                        nombre_ct=1
+                        [ "$2" != "" ] && nombre_ct=$2
+
+                # Création des conteneurs
+                        for i in $(seq 1 $nombre_ct);do
+	                        docker run -tid --name $USER-$i alpine:latest
+                                echo " Centenur $USER-$i Créé avec succès"
+                        done
                 echo ""
 
 # Si option --drop
         elif [ "$1" == "--drop" ];then
             echo ""
-            echo " Vous avez choisis --drop"
+            echo " Vous avez choisi --drop"
             echo ""
-                docker rm -f $USER
+                docker rm -f $USER-$i
 
 # Si option --infos
         elif [ "$1" == "--infos" ];then
             echo ""
-            echo " Vous avez choisis --infos"
+            echo " Vous avez choisi --infos"
             echo ""
 
 # Si option --start
         elif [ "$1" == "--start" ];then
             echo ""
-            echo " Vous avez choisis --start"
+            echo " Vous avez choisi --start"
             echo ""
 
 # Si option --ansible
         elif [ "$1" == "--ansible" ];then
             echo ""
-            echo " Vous avez choisis --ansible"
+            echo " Vous avez choisi --ansible"
             echo ""
 
 # Si aucune option affichage de l'aide
