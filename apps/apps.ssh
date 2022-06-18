@@ -12,21 +12,18 @@
             echo ""
             echo " Vous avez choisi --create"
             echo ""
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                 docker run -tid --name $USER alpine:latest
             echo ""
-<<<<<<< HEAD
-=======
+
                 #Initaiulisation du nombre conteneur
                 nombre_ct=1
                 [ "$2" != "" ] && nombre_ct=$2
                 docker run -tid --name $USER alpine:lates
                 echo " Vous avez créé $nombre_ct"
-=======
+
             echo "Debut de la création du/des conteneur.s"
-=======
->>>>>>> Developement
+
                 
                 # Dynamiser la création des conteneur avec la boucle FOR
                 # Définition du nombre machine
@@ -49,16 +46,10 @@
                         for i in $(seq $min $max);do
 	                        docker run -tid --name $USER-CT-$i alpine:latest
                                 echo ""
-                                echo " Centenur $USER-CT-$i Créé avec succès"
+                                echo " Centenur $USER-CT-$i Créé avec succès."
                                 echo ""
                         done
-<<<<<<< HEAD
->>>>>>> Developement
-=======
                         echo "Pour afficher les conteneurs, executez:   docker ps"
->>>>>>> Developement
-                echo ""
->>>>>>> Developement
 
 # Si option --drop
         elif [ "$1" == "--drop" ];then
@@ -67,7 +58,7 @@
             echo ""
             echo "Suppression du/des conteneur.s"
                 docker rm -f $(docker ps -a | grep $USER-CT | awk '{print $1}')
-                echo " Suppression des conteneurs avec succès"
+                echo " Suppression des conteneurs avec succès."
 
 # Si option --infos
         elif [ "$1" == "--infos" ];then
@@ -82,6 +73,7 @@
             echo ""
                 docker start $(docker ps -a | grep $USER-CT | awk '{print $1}')
             echo ""
+            echo " Redémarrage des conteneurs avec succès."
                 
         
 
