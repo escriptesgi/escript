@@ -24,11 +24,14 @@
                 echo " Vous avez créé $nombre_ct"
 =======
             echo "Debut de la création du/des conteneur.s"
+                
+                # Dynamiser la création des conteneur avec les boucle FOR
                 # Définition du nombre machine
                         nombre_ct=1
                         [ "$2" != "" ] && nombre_ct=$2
 
                 # Création des conteneurs
+                echo " Debut de la création du conteneur"
                         for i in $(seq 1 $nombre_ct);do
 	                        docker run -tid --name $USER-$i alpine:latest
                                 echo " Centenur $USER-$i Créé avec succès"
@@ -42,7 +45,9 @@
             echo ""
             echo " Vous avez choisi --drop"
             echo ""
-                docker rm -f $USER-$i
+            echo "Sppression du/des conteneur.s"
+                docker rm -f $(docker ps -a | grep $USER | awk '{print $1}')
+                echo " Suppression des conteneurs avec succès"
 
 # Si option --infos
         elif [ "$1" == "--infos" ];then
