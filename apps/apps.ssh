@@ -12,7 +12,12 @@
             echo ""
             echo " Vous avez choisis --create"
             echo ""
+                #Initaiulisation du nombre conteneur
+                nombre_ct=1
+                [ "$2" != "" ] && nombre_ct=$2
                 docker run -tid --name $USER alpine:lates
+                echo " Vous avez créé $nombre_ct"
+                echo ""
 
 # Si option --drop
         elif [ "$1" == "--drop" ];then
