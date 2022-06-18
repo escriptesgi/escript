@@ -12,19 +12,32 @@
             echo ""
             echo " Vous avez choisi --create"
             echo ""
-            echo "Debut de la création du/des conteneur.s"
                 
-                # Dynamiser la création des conteneur avec les boucle FOR
+                # Dynamiser la création des conteneur avec la boucle FOR
                 # Définition du nombre machine
                         nombre_ct=1
                         [ "$2" != "" ] && nombre_ct=$2
 
+                # Initialisation de la valeur minimum/maximum
+                        min=1
+                        max=0
+                # Récupération de ID maximum
+                        idmax=`docker ps -a --format '{{ .Names }}' | awk -F "-" -v user=$USER '$0 ~ user"-CT" {print $3}' | sort -r |head -1`
+                
+                # Définition de la valeur minimum/maximum
+                        min=$(($idmax +1))
+                        max=$(($idmax + nombre_ct))
+
                 # Création des conteneurs
                 echo " Debut de la création du conteneur"
-                        for i in $(seq 1 $nombre_ct);do
-	                        docker run -tid --name $USER-$i alpine:latest
-                                echo " Centenur $USER-$i Créé avec succès"
+                echo ""
+                        for i in $(seq $min $max);do
+	                        docker run -tid --name $USER-CT-$i alpine:latest
+                                echo ""
+                                echo " Centenur $USER-CT-$i Créé avec succès"
+                                echo ""
                         done
+                        echo "Pour afficher les conteneurs, executez:   docker ps"
                 echo ""
 
 # Si option --drop
@@ -32,8 +45,8 @@
             echo ""
             echo " Vous avez choisi --drop"
             echo ""
-            echo "Sppression du/des conteneur.s"
-                docker rm -f $(docker ps -a | grep $USER | awk '{print $1}')
+            echo "Suppression du/des conteneur.s"
+                docker rm -f $(docker ps -a | grep $USER-CT | awk '{print $1}')
                 echo " Suppression des conteneurs avec succès"
 
 # Si option --infos
