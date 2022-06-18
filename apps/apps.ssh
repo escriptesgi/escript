@@ -80,6 +80,10 @@
             echo ""
             echo " Vous avez choisi --start"
             echo ""
+                docker start $(docker ps -a | grep $USER-CT | awk '{print $1}')
+            echo ""
+                
+        
 
 # Si option --ansible
         elif [ "$1" == "--ansible" ];then
