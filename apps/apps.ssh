@@ -40,7 +40,15 @@
                 echo " Debut de la création du conteneur"
                 echo ""
                         for i in $(seq $min $max);do
-                          docker run -tid --name $USER-CT-$i alpine:latest
+                #          docker run -tid --name $USER-CT-$i alpine:latest
+                        docker run -tid --cap-add NET_ADMIN --cap-add SYS_ADMIN --publish-all=true -v /srv/data:/srv/html -v /sys/fs/cgroup:/sys/fs/cgroup:ro --name $USER-CT-$i -h $USER-CT-$i debian-escript
+                        docker exec -ti $USER-CT-$i /bin/bash -c "useradd -m -p sa3tHJ3/KuYvI $USER"
+                        docker exec -ti $USER-CT-$i /bin/bash -c "mkdir  ${HOME}/.ssh && chmod 700 ${HOME}/.ssh && chown $USER:$USER $HOME/.ssh"
+                        docker cp $HOME/.ssh/id_rsa.pub $USER-CT-$i:$HOME/.ssh/authorized_keys
+                        docker exec -ti $USER-CT-$i /bin/bash -c "chmod 600 ${HOME}/.ssh/authorized_keys && chown $USER:$USER $HOME/.ssh/authorized_keys"
+                        docker exec -ti $USER-CT-$i /bin/bash -c "echo '$USER   ALL=(ALL) NOPASSWD: ALL'>>/etc/sudoers"
+                        docker exec -ti $USER-CT-$i /bin/bash -c "service ssh start"
+
                           echo "Conteneur $USER-CT-$i créé"
                         done
 
