@@ -13,14 +13,10 @@
             echo " Vous avez choisi --create"
             echo ""
 
-                docker run -tid --name $USER alpine:latest
-            echo ""
-
                 #Initaiulisation du nombre conteneur
                 nombre_ct=1
                 [ "$2" != "" ] && nombre_ct=$2
-                docker run -tid --name $USER alpine:lates
-                echo " Vous avez créé $nombre_ct"
+              
 
             echo "Debut de la création du/des conteneur.s"
 
@@ -37,9 +33,8 @@
                         idmax=`docker ps -a --format '{{ .Names}}' | awk -F "-" -v user="$USER" '$0 ~ user"-CT" {print $3}' | sort -r |head -1`
                 
                 # Définition de la valeur minimum/maximum
-                        min=$(($idmax + 1))
-                        max=$(($idmax + $nombre_ct)) 
-
+                        min=$(($idmax +1))
+                        max=$(($idmax + nombre_ct))
 
                 # Création des conteneurs
                 echo " Debut de la création du conteneur"
@@ -62,12 +57,15 @@
 
 # Si option --infos
         elif [ "$1" == "--infos" ];then
-            echo ""
-            echo " Vous avez choisi --infos"
-            echo ""
-                for conteneur in $(docker ps -a | grep $USER-CT | awk '{print $1}');do
-                        docker inspect -f '=> {{.Name}} - {{.NetworkSettings.IPAddress}}' conteneur 
-                done
+  
+           echo ""
+           echo "Informations des conteneurs : "
+           echo ""
+        	for conteneur in $(docker ps -a | grep $USER-CT | awk '{print $1}');do      
+		        docker inspect -f '   => {{.Name}} - {{.NetworkSettings.IPAddress }}' $conteneur
+	        done
+	   echo ""
+
 
 # Si option --start
         elif [ "$1" == "--start" ];then
